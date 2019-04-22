@@ -41,3 +41,5 @@ doc/manual/_build
 doc/xml
 novaprova-*.tar.bz2
 novaprova.pc
+**/.doxy-stamp
+**/*.in~
