@@ -76,8 +76,8 @@ testmanager_t::instance()
 void
 testmanager_t::print_banner()
 {
-    printf("np: NovaProva Copyright (c) Gregory Banks\n");
-    printf("np: Built for O/S "_NP_OS" architecture "_NP_ARCH"\n");
+    printf("np: NovaProva Copyright (c) Gregory Banks\n" );
+    printf("np: Built for O/S " _NP_OS " architecture " _NP_ARCH "\n" );
     fflush(stdout);
 }
 
