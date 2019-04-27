@@ -277,6 +277,8 @@ state_t::add_self()
     char *exe = np::spiegel::platform::self_exe();
     bool r = false;
 
+    bool exec_readed = false;
+
     vector<np::spiegel::platform::linkobj_t> los = np::spiegel::platform::get_linkobjs();
     vector<np::spiegel::platform::linkobj_t>::iterator i;
     const char *filename;
@@ -287,7 +289,10 @@ state_t::add_self()
 #endif
 	filename = i->name;
 	if (!filename)
+	{
 	    filename = exe;
+	    exec_readed = true;
+	}
 
 	if (filename_is_ignored(filename))
 	    continue;
@@ -296,10 +301,29 @@ state_t::add_self()
 	if (lo)
 	{
 #if _NP_DEBUG
-	    fprintf(stderr, "np: state_t::add_self: have spiegel linkobj\n");
+	    fprintf(stderr, "np: state_t::add_self: have spiegel linkobj (%s)\n", i->name);
 #endif
 	    lo->system_mappings_ = i->mappings;
 	}
+    }
+
+#if _NP_DEBUG
+		fprintf(stderr, "np: state_t::add_self: exec_readed: %s\n", exec_readed?"true":"false");
+#endif
+
+    if(!exec_readed)
+    {
+		filename = exe;
+		exec_readed = true;
+
+		linkobj_t *lo = get_linkobj(filename);
+		if (lo)
+		{
+	#if _NP_DEBUG
+			fprintf(stderr, "np: state_t::add_self: have spiegel linkobj (%s)\n", filename);
+	#endif
+			lo->system_mappings_ = i->mappings;
+		}
     }
 
     r = read_linkobjs();
