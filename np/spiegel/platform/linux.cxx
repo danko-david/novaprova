@@ -150,7 +150,7 @@ add_one_linkobj(struct dl_phdr_info *info,
     if (!info->dlpi_phnum)
 	return 0;
 
-#if 0
+#if _NP_DEBUG
     fprintf(stderr, "dl_phdr_info { addr=%p name=%s }\n",
 	    (void *)info->dlpi_addr, info->dlpi_name);
 #endif

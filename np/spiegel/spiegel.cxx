@@ -352,6 +352,12 @@ get_compile_units()
 
     const vector<np::spiegel::dwarf::compile_unit_t*> &units =
 	np::spiegel::dwarf::state_t::instance()->get_compile_units();
+#if _NP_DEBUG
+    fprintf(stderr, "np: Numbers of potential compilation units: %d\n",
+    		units.size());
+#endif
+
+
     vector<np::spiegel::dwarf::compile_unit_t*>::const_iterator i;
     for (i = units.begin() ; i != units.end() ; ++i)
     {
@@ -359,6 +365,10 @@ get_compile_units()
 	if (cu)
 	    res.push_back(cu);
     }
+#if _NP_DEBUG
+    fprintf(stderr, "np: Numbers of found compilation units: %d\n",
+    		res.size());
+#endif
     return res;
 }
 
