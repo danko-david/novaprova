@@ -21,7 +21,9 @@ namespace np { namespace spiegel { namespace dwarf {
 using namespace std;
 using namespace np::util;
 
-#define DEBUG_WALK 0
+#ifndef _NP_DEBUG_WALK
+	#define _NP_DEBUG_WALK 0
+#endif
 
 uint32_t walker_t::next_id_ = 1;
 
@@ -59,7 +61,7 @@ walker_t::read_entry()
 	if (!level_)
 	    return RE_EOF;   // end of subtree in scope
 	level_--;
-#if DEBUG_WALK
+#if _NP_DEBUG_WALK
 	printf("\n# XXX [%u] %s:%d level=%u return 0\n",
 	       id_, __FUNCTION__, __LINE__, level_);
 #endif
@@ -91,11 +93,11 @@ walker_t::read_entry()
     if (a->children)
 	level_++;
 
-#if DEBUG_WALK
+#if _NP_DEBUG_WALK
     printf("\n# XXX [%u]%s:%d level=%u entry={tag=%s level=%u offset=0x%x} return 1\n",
 	   id_, __FUNCTION__, __LINE__,
 	   level_,
-	   tagnames.to_name(entry_->get_tag()),
+	   tagnames.to_name(entry_.get_tag()),
 	   entry_.get_level(),
 	   entry_.get_offset());
 #endif
