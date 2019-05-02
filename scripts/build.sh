@@ -5,7 +5,7 @@
 #usage: ./scripts/build.sh
 # add -j$CONCURRENCY to compile faster
 # add CFLAGS="-D_NP_DEBUG" to compile debug version
-# eg: ./scripts/build.sh -j4 CFLAGS="-D_NP_DEBUG -D_NP_x86_64"
+# eg: ./scripts/build.sh -j4 CFLAGS="-D_NP_DEBUG -D_NP_x86_64 -g"
 
 cd "$(dirname "$0")"
 cd ..

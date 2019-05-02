@@ -141,19 +141,19 @@ add_one_linkobj(struct dl_phdr_info *info,
 {
     vector<linkobj_t> *vec = (vector<linkobj_t> *)closure;
 
-    const char *name = info->dlpi_name;
-    if (name && !*name)
-	name = NULL;
-
-    if (!name && info->dlpi_addr)
-	return 0;
-    if (!info->dlpi_phnum)
-	return 0;
-
 #if _NP_DEBUG
     fprintf(stderr, "dl_phdr_info { addr=%p name=%s }\n",
 	    (void *)info->dlpi_addr, info->dlpi_name);
 #endif
+
+    const char *name = info->dlpi_name;
+/*    if (name && !*name)
+	name = NULL;
+
+    if (!name && info->dlpi_addr)
+	return 0;*/
+    if (!info->dlpi_phnum)
+	return 0;
 
     linkobj_t lo;
     lo.name = name;
@@ -168,6 +168,12 @@ add_one_linkobj(struct dl_phdr_info *info,
 		(unsigned long)ph->p_offset, (unsigned long)ph->p_memsz,
 		(void *)((unsigned long)info->dlpi_addr + ph->p_vaddr)));
     }
+
+#if _NP_DEBUG
+    fprintf(stderr, "np: store dl_phdr_info { addr=%p name=%s }\n",
+	    (void *)info->dlpi_addr, info->dlpi_name);
+#endif
+
     vec->push_back(lo);
 
     return 0;

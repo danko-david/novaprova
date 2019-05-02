@@ -1,0 +1,4 @@
+#run tests without valgrind
+NOVAPROVA_VALGRIND=no
+
+
