@@ -1,0 +1,5 @@
+# Collected on debian 9.
+# These are Debian package names that - if you use non DEB based system - you can
+# use to figure out what packages you need to install to achieve seamless build.
+# (i.e: instead of try -> fail -> install stuffs -> try again)
+build-essential libxml2-dev binutils-dev valgrind doxygen

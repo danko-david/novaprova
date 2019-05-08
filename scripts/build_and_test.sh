@@ -4,7 +4,7 @@ set -e
 cd "$(dirname "$0")"
 
 cd ..
-make clean
+make clean || true
 
 ./scripts/build.sh -j"$(nproc)"
 
